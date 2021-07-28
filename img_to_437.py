@@ -16,8 +16,8 @@ python3 img_to_437.py [filename.png] > filename.txt
 
 Output bytes are written to stdout, errors to stderr.
 """)
-codes437 = list()
 
+codes437 = list()
 (xdim, ydim) = img.size
 
 if xdim > 80 or ydim > 50:
