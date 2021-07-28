@@ -1,6 +1,6 @@
 # img-to-437
 
-A utility that converts a monochrome image to display in a [codepage 437](https://en.wikipedia.org/wiki/Codepage_437) terminal.
+A utility that converts an image to display in a [codepage 437](https://en.wikipedia.org/wiki/Codepage_437) terminal.
 Black pixels become blanks, any other color becomes a mark.  For example:
 
 Example input:

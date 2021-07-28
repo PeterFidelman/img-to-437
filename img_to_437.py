@@ -9,8 +9,9 @@ try:
     img = Image.open(sys.argv[1])
 except:
     bail("""
-Convert a monochrome image to display in a codepage 437 terminal.
+Convert an image to display in a codepage 437 terminal.
 Black pixels become blanks, any other color becomes a mark.
+The input image is assumed to be in RGB format.
 
 python3 img_to_437.py [filename.png] > filename.txt
 
@@ -28,8 +29,9 @@ if ydim & 1 == 1:
 
 for y in range(0, ydim, 2):
     for x in range(xdim):
-        top_pixel = 0 if img.getpixel((x, y)) == (0, 0, 0) else 1
-        bot_pixel = 0 if img.getpixel((x, y+1)) == (0, 0, 0) else 1
+	# Consider only the first three channels (r,g,b)
+        top_pixel = 0 if img.getpixel((x, y))[0:3] == (0, 0, 0) else 1
+        bot_pixel = 0 if img.getpixel((x, y+1))[0:3] == (0, 0, 0) else 1
         selector = (top_pixel << 1) | bot_pixel
         codes437.append((32, 220, 223, 219)[selector])
     # lines that are exactly 80 columns wide will wrap automatically, but
